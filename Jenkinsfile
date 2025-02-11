@@ -10,5 +10,14 @@ pipeline {
                 '''
             }
         }
+ stage('Release') {
+                    steps {
+                        sh 'echo "Hello World Release"'
+                        sh '''
+                            echo "Multiline shell steps works too"
+                            ls -lah
+                        '''
+                    }
+                }
     }
 }
