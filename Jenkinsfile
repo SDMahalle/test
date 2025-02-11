@@ -1,8 +1,9 @@
 pipeline {
     agent any
- parameters {
-            string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
-        }
+  parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
+        choice(name: 'BUILD_TYPE', choices: ['Snapshot', 'Release'], description: 'Choose build type')
+    }
     stages {
         stage('Build') {
             steps {
