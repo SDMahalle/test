@@ -22,5 +22,30 @@ pipeline {
                         '''
                     }
                 }
+
+                stage('Update POM') {
+                            steps {
+                                sh '''
+                                    # Clone the test2 repository
+                                    git clone https://github.com/SDMahalle/test3.git
+                                    cd test2
+
+                                    # Checkout the main branch
+                                    git checkout main
+
+                                    # Make changes to the pom.xml file
+                                    # (Assuming you have a script or command to update the pom.xml)
+                                    # For example, using sed to update a version number
+                                    sed -i 's/<version>1.0-SNAPSHOT</version>/<version>1.1-SNAPSHOT</version>/' pom.xml
+
+                                    # Commit and push the changes
+                                    git config user.name "your-username"
+                                    git config user.email "your-email@example.com"
+                                    git add pom.xml
+                                    git commit -m "Update pom.xml version"
+                                    git push origin main
+                                '''
+                            }
+                        }
     }
 }
